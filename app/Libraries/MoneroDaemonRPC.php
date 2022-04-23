@@ -5,7 +5,7 @@ namespace App\Libraries;
 class MoneroDaemonRPC {
 
 	private $__url = "";
-	
+
   /**
    * Create a new controller instance.
    *
@@ -14,10 +14,10 @@ class MoneroDaemonRPC {
   public function __construct()
   {
 		$host = env('DAEMON_HOST', '127.0.0.1');
-		$port = env('DAEMON_PORT', '18081');
+		$port = env('DAEMON_PORT', '28081');
 		$this->__url = 'http://'.$host.':'.$port;
   }
-	
+
 		public function getInfo(){
 
 		$data = array('id' => '0', 'jsonrpc' => '0');
@@ -30,7 +30,7 @@ class MoneroDaemonRPC {
 	}
 
 	public function getBlockHeaderByHash($hash){
-		
+
 		$params = array("hash" => $hash);
 		$data = array('id' => '0', 'jsonrpc' => '0', 'method' => 'getblockheaderbyhash', 'params' => $params);
 		$data_string = json_encode($data);
@@ -92,13 +92,13 @@ class MoneroDaemonRPC {
 								'decode_as_json' => true
 						);
 		$data_string = json_encode($data);
-		
+
 		$path = '/gettransactions';
 		$result = $this->rpc_call($data_string, $path);
 
-		return $result;		
+		return $result;
 	}
-	
+
 	public function getTransactionHex($param){
 		$data = array('txs_hashes' => [$param]);
 		$data_string = json_encode($data);
@@ -108,11 +108,11 @@ class MoneroDaemonRPC {
 
 		return $result;
 	}
-	
+
 	public function getTransactionPool($param = '') {
 		$data = array('txs_hashes' => [$param]);
 		$data_string = json_encode($data);
-		
+
 		$path = '/get_transaction_pool';
 		$result = $this->rpc_call($data_string, $path);
 
@@ -120,7 +120,7 @@ class MoneroDaemonRPC {
 	}
 
 	public function getLastBlockHeader(){
-		$data = array('id' => '0', 'jsonrpc' => '0', 'method' => 'getlastblockheader', 'params' => json_decode("{}"));     
+		$data = array('id' => '0', 'jsonrpc' => '0', 'method' => 'getlastblockheader', 'params' => json_decode("{}"));
 		$data_string = json_encode($data);
 
 		$path = '/json_rpc';
@@ -135,8 +135,8 @@ class MoneroDaemonRPC {
 		$data_string = json_encode($data);
 
 		$path = '/json_rpc';
-		$result = $this->rpc_call($data_string, $path);		
-		
+		$result = $this->rpc_call($data_string, $path);
+
 		return $result;
 	}
 
@@ -156,5 +156,5 @@ class MoneroDaemonRPC {
 
 		return $result;
 	}
-	
+
 }

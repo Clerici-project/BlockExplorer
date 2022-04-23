@@ -12,9 +12,9 @@ class StringHelpers {
 	 */
   public static function isValidAddress($str) {
   	//return !empty($str) && preg_match('4[0-9AB][123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{93}', $str);
-		return !empty($str) && preg_match('/^4[0-9AB][123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{93}/', $str);
+		return !empty($str) && preg_match('/^c[0-9AB][123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{93}/', $str);
   }
-  
+
   /**
 	 * Verifies if supplied string is a valid Hash
 	 *
@@ -34,5 +34,5 @@ class StringHelpers {
   public static function isValidHeight($str) {
 		return !empty($str) && preg_match('/^[0-9]+$/', $str);
 	}
-  
+
 }
